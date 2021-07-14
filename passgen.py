@@ -1,4 +1,5 @@
 import argparse
+from utils import create_password
 
 parser = argparse.ArgumentParser(
     prog="passgen",
@@ -23,4 +24,3 @@ parser.add_argument("-ns", "--no-symbols", help="remove symbols",
                     action="store_true")
 
 length, save, numbers, symbols = parser.parse_args().__dict__.values()
-
