@@ -11,7 +11,9 @@ parser.add_argument("-l", "--length",
                     help="length of the password",
                     type=int,
                     nargs="?",
-                    const=8)
+                    default=8,
+                    const=8,
+                    metavar="number")
 parser.add_argument("-s", "--save",
                     help="save password to passwords.txt",
                     action="store_true")
@@ -20,6 +22,5 @@ parser.add_argument("-nn", "--no-numbers", help="remove numbers",
 parser.add_argument("-ns", "--no-symbols", help="remove symbols",
                     action="store_true")
 
-args = parser.parse_args()
+length, save, numbers, symbols = parser.parse_args().__dict__.values()
 
-print(args.length)
