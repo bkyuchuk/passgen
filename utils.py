@@ -1,4 +1,6 @@
 import random
+import os
+from colorama import init, deinit, Fore
 
 ALPHA = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 NUMBERS = "0123456789"
@@ -41,3 +43,21 @@ def generate_password(length: int, chars: str) -> str:
     for index in char_indexes:
         password += chars[index]
     return password
+
+
+def save_password(password: str) -> None:
+    """
+    Save the given password to a text file in the same directory,
+    where the script was executed.
+
+    :param password: The password to be saved.
+    :return: True if the password was saved successfully, False otherwise.
+    """
+    # Initialize colorama.
+    init()
+    with open(os.path.join(os.getcwd(), "passwords.txt"),
+              "a") as passwords_file:
+        print(password, file=passwords_file)
+    print(Fore.GREEN + "Password saved to passwords.txt")
+    # Close colorama.
+    deinit()
