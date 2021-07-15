@@ -1,6 +1,7 @@
 import random
 import os
-from colorama import init, deinit, Fore
+import pyperclip
+from colorama import Fore
 
 ALPHA = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 NUMBERS = "0123456789"
@@ -51,13 +52,18 @@ def save_password(password: str) -> None:
     where the script was executed.
 
     :param password: The password to be saved.
-    :return: True if the password was saved successfully, False otherwise.
     """
-    # Initialize colorama.
-    init()
     with open(os.path.join(os.getcwd(), "passwords.txt"),
               "a") as passwords_file:
         print(password, file=passwords_file)
     print(Fore.GREEN + "Password saved to passwords.txt")
-    # Close colorama.
-    deinit()
+
+
+def copy_to_clipboard(text: str) -> None:
+    """
+    Copy the passed `text` to the clipboard. The value will stay
+    in the clipboard even after the program is closed.
+
+    :param text: The text to be copied to the clipboard.
+    """
+    pyperclip.copy(text)
