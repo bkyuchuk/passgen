@@ -1,6 +1,7 @@
 import unittest
 import utils
 import os.path
+import pyperclip
 
 
 class TestUtils(unittest.TestCase):
@@ -49,7 +50,11 @@ class TestUtils(unittest.TestCase):
         os.remove(file_path)
 
     def test_copy_to_clipboard(self):
-        pass
+        password = "1234 password to test"
+        pyperclip.copy(password)
+        result = pyperclip.paste()
+
+        self.assertEqual(password, result)
 
 
 if __name__ == "__main__":
