@@ -1,5 +1,6 @@
 import unittest
 import utils
+import os.path
 
 
 class TestUtils(unittest.TestCase):
@@ -30,7 +31,22 @@ class TestUtils(unittest.TestCase):
         self.assertTrue(any(element in utils.SYMBOLS for element in result))
 
     def test_save_password(self):
-        pass
+        first_password = "first dummy password to save"
+        second_password = "second dummy password to save"
+
+        utils.save_password(first_password)
+        utils.save_password(second_password)
+
+        file_path = os.path.join(os.getcwd(), "passwords.txt")
+        self.assertTrue(os.path.isfile(file_path))
+
+        with open("passwords.txt") as passwords_file:
+            file_lines = passwords_file.readlines()
+
+        self.assertEqual(first_password, file_lines[0].strip())
+        self.assertEqual(second_password, file_lines[1].strip())
+
+        os.remove(file_path)
 
     def test_copy_to_clipboard(self):
         pass
