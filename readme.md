@@ -9,27 +9,18 @@ It's a very small and simple app inspired by
 ## Usage
 
 Install dependencies:
-
 ```
 pipenv install
 ```
 
 Run file:
-
 ```
 python passgen.py [options]
 ```
 
-To create a symlink to run "passgen" from anywhere
-
+Run tests:
 ```
-npm link
-
-# Now you can run
-passgen (options)
-
-# To remove symlink
-npm unlink
+python -m unittest test_utils.py
 ```
 
 ## Options
